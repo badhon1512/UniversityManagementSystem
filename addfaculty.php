@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-
 <body>
-
-
-
-
+  
 <?php include "header.php";?>
 
 
 
-<h1 style="text-align: center;">Add New Students</h1>
+<h1 style="text-align: center;">Add New Faculty</h1>
 
 
   <form enctype="multipart/formdata" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
@@ -29,6 +24,8 @@
     
     <br>
     <hr>
+
+    
     <label style="margin-left:100px;  font-size:20px" for="">Depertment </label>
     <label style="margin-left:100px; color:maroon; font-size:20px" for=""> :</label>
 
@@ -46,6 +43,15 @@
 
     <hr>
 
+
+
+    <label style="margin-left:100px;  font-size:20px" for="">Salary</label>
+
+    <label style="margin-left:150px; color:maroon; font-size:20px" for=""> :</label>
+    
+    <input style=" height:20px; width:200px" type="number" name="pass" id="pass" placeholder="2000" > <?php echo $notpass;  ?>
+    <br>
+    <br>
    
 
     <input style="margin-left:100px; width:210px;" type="submit" name="submit" id="">
@@ -91,6 +97,8 @@
 
 
 
-</body>
 
+
+
+</body>
 </html>

@@ -8,6 +8,82 @@
 </head>
 
 <body>
+<?php
+
+
+
+$fname =$lname= $email = $gender = $username = $password =$cpassword=$date= "";
+$Notfname=$notlname=$notemail=$notGender=$notusername=$notpass=$notcpass=$notdate="";
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $fname = test_input($_POST["fname"]);
+  $lname = test_input($_POST["lname"]);
+  $email = test_input($_POST["email"]);
+  $gender = test_input($_POST["gender"]);
+  $username=test_input(($_POST["username"]));
+  $password=test_input(($_POST["pass"]));
+  $cpassword=test_input(($_POST["cpass"]));
+  $date=test_input(($_POST["dob"]));
+
+  
+  
+
+
+
+
+  if(empty($fname) || !preg_match("/^[a-zA-Z-' ]*$/",$fname))
+  {
+    $Notfname="please enter your first name";
+  }
+  if(empty($lname) || !preg_match("/^[a-zA-Z-' ]*$/",$lname))
+  {
+    $notlname="please enter your last name";
+  }
+  if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
+  {
+    $notemail="please enter your email";
+  }
+  if(empty($username)|| !preg_match("/^[(0-9)+a-zA-Z-' ]*$/",$username))
+  {
+    $notusername="please enter user name";
+  }
+
+  if(empty($password))
+  {
+    $notpass="please enter password";
+  }
+  if(empty($cpassword))
+  {
+    $notcpass="please  enter confirm password";
+  }
+
+  if(empty($date))
+  {
+    $notdate="please enter dtae of birth";
+  }
+
+  
+
+
+  
+  
+}
+
+function test_input($data) {
+  
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+
+  
+
 
 
 
@@ -58,21 +134,13 @@
     <hr>
 
 
-    <label style="margin-left:100px;  font-size:30px" for="">Confirm Password  </label>
-    <label style="margin-left:10px; color:maroon; font-size:30px" for=""> :</label>
+    <label style="margin-left:100px;  font-size:20px" for="">Confirm Password  </label>
+    <label style="margin-left:40px; color:maroon; font-size:20px" for=""> :</label>
     <input style=" height:20px; width:200px" type="password" name="cpass" id="cpass" placeholder="*******" > <?php echo $notcpass;  ?>
     <br>
     <hr>
 
-    <select name="depertment" id="depertment">
-
-    <option value="CSE">CSE</option>
-    <option value="EEE">CSE</option>
-    <option value="BBA">CSE</option>
-    </select>
-
-
-
+    
 
     <fieldset style=" margin-left:100px;">
     <legend   >Gender</legend>
@@ -99,6 +167,8 @@
     <input style="margin-left:40px; height:20px; width:200px" type="date" name="dob" id="date" > <?php echo $notdate;  ?>
 
     </fieldset>
+    
+
 
 
 

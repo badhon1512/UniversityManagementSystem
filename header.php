@@ -9,9 +9,26 @@
 
 <ul style="list-style-type:none;  overflow:hidden; margin:0; padding: 0; border: 1px solid #2196f3;">
 
-<li><a href=""  style="float:left"><img src="image/aiub_portal_logo.png" alt="Aiub logo"></a></li>
-<li><a href=""> <h1 style="float:right; margin:7px 20px;">Mr. Clerk</h1></a></li>
+<li><a href="adminhome.php"  style="float:left"><img src="image/aiub_portal_logo.png" alt="Aiub logo"></a></li>
+<li><a href=""> <h1 style="float:right; margin:7px 20px;">mr.x</h1></a></li>
 </ul>
+
+<?php 
+
+   class getData
+  {
+    public $name;
+
+    function __construct($name)
+    {
+      $this->name=$name;
+    }
+
+  }
+
+
+
+?>
   
 </body>
 </html>
