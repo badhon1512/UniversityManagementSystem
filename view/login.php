@@ -1,5 +1,5 @@
 <?php
-   include('session\loginsession.php');
+   include('..\session\loginsession.php');
 
    if(isset($_SESSION["username"]))
    {
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-<body style="background-image:url('image/aiubHome.jpg');background-position: center; background-repeat: no-repeat;background-attachment: fixed;" >
+<body style="background-image:url('../image/aiubHome.jpg');background-position: center; background-repeat: no-repeat;background-attachment: fixed;" >
 
 
   <form action="" method="POST">
@@ -31,8 +31,14 @@
 
    
 
-
   </form>
+
+  <?php
+
+   echo $error;
+
+  ?>
+
 
 
   

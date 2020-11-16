@@ -12,21 +12,22 @@
 
 
 
-$fname =$lname= $email = $gender = $username = $password =$cpassword=$date= "";
-$Notfname=$notlname=$notemail=$notGender=$notusername=$notpass=$notcpass=$notdate="";
+$name= $email = $gender = $username = $password =$cpassword=$date= "";
+$notname=$notlname=$notemail=$notGender=$notusername=$notpass=$notcpass=$notdate="";
+$valid=true;
 
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  $fname = test_input($_POST["fname"]);
-  $lname = test_input($_POST["lname"]);
+  $name = test_input($_POST["name"]);
   $email = test_input($_POST["email"]);
   $gender = test_input($_POST["gender"]);
   $username=test_input(($_POST["username"]));
   $password=test_input(($_POST["pass"]));
   $cpassword=test_input(($_POST["cpass"]));
   $date=test_input(($_POST["dob"]));
+  
 
   
   
@@ -34,35 +35,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-  if(empty($fname) || !preg_match("/^[a-zA-Z-' ]*$/",$fname))
+  if(empty($name) || !preg_match("/^[a-zA-Z-' ]*$/",$name))
   {
-    $Notfname="please enter your first name";
+    $notname="please enter your name";
+    $valid=false;
   }
-  if(empty($lname) || !preg_match("/^[a-zA-Z-' ]*$/",$lname))
-  {
-    $notlname="please enter your last name";
-  }
+  
   if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
   {
     $notemail="please enter your email";
+    $valid=false;
   }
   if(empty($username)|| !preg_match("/^[(0-9)+a-zA-Z-' ]*$/",$username))
   {
     $notusername="please enter user name";
+    $valid=false;
   }
 
   if(empty($password))
   {
     $notpass="please enter password";
+    $valid=false;
   }
   if(empty($cpassword))
   {
     $notcpass="please  enter confirm password";
+    $valid=false;
   }
 
   if(empty($date))
   {
     $notdate="please enter dtae of birth";
+    $valid=false;
   }
 
   
@@ -79,6 +83,9 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
+
+
+
 ?>
 
 
@@ -87,21 +94,13 @@ function test_input($data) {
 
 
 
-<label style="margin-left:100px;  font-size:20px" for="">First name </label>
-
-    <label style="margin-left:98px; color:maroon; font-size:20px" for=""> :</label>
-    <input style=" height:20px; width:200px" type="text" name="fname" id="name" placeholder="First name"> <?php echo $Notfname;  ?>
-    
-
-
-    <hr>
 
 
 
-    <label style="margin-left:100px;  font-size:20px" for="">Last name  </label>
+    <label style="margin-left:100px;  font-size:20px" for=""> Name  </label>
 
-    <label style="margin-left:103px;  font-size:20px" for=""> :</label>
-    <input style=" height:20px; width:200px" type="text" name="lname" id="lname" placeholder="last name" > <?php echo $notlname;  ?>
+    <label style="margin-left:140px;  font-size:20px" for=""> :</label>
+    <input style=" height:20px; width:200px" type="text" name="name" id="name" placeholder="name" > <?php echo $notname;  ?>
     
     <!--<hr style="margin-left:400px; margin-:400px;">-->
     <hr>

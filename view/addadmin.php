@@ -7,11 +7,13 @@
 </head>
 <body>
   
-<?php include "header.php";?>
+<?php
+session_start();
+ include "header.php";?>
 
 
 
-<h1 style="text-align: center;">Add New Faculty</h1>
+<h1 style="text-align: center;">Add New Admin</h1>
 
 
   <form enctype="multipart/formdata" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
@@ -25,17 +27,7 @@
     <br>
     <hr>
 
-    
-    <label style="margin-left:100px;  font-size:20px" for="">Depertment </label>
-    <label style="margin-left:100px; color:maroon; font-size:20px" for=""> :</label>
-
-    <select name="depertment" id="depertment" style="width: 100px; height:30px;">
-
-    <option value="CSE">CSE</option>
-    <option value="EEE">EEE</option>
-    <option value="BBA">BBB</option>
-    </select>
-<hr>
+  
 <label style="margin-left:100px;  font-size:20px" for="">Picture </label>
     <label style="margin-left:140px; color:maroon; font-size:20px" for=""> :</label>
     <input type="file">
