@@ -28,7 +28,40 @@ $result = $conn->query("SELECT * FROM ". $table." WHERE userid='". $username."' 
  }
 
 
+ function InsertQueryPrepare($conn,$username,$name, $email,$gender,$password,$date,
+ $depertment,$salary,$active)
+ {
+
+  $stmt = $conn->prepare("INSERT INTO faculty VALUES (?, ?, ?,?,?,?,?,?,?)");
+
+  $stmt->bind_param("sssssssss", $username, $name, $email,$gender,$password,$date,$depertment,$salary,$active);
+
+  
+  if ($stmt->execute() === TRUE) {
+    echo "New record created successfully";
+    return true;
+  } else {
+    echo "Error:   <br>" . $conn->error;
+  }
+  $stmt->close();
+}
+
+
  function InsertQuery($conn,$sql)
+{
+  
+  
+  if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+    return true;
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+}
+
+
+
+function UpdateQuery($conn,$sql)
 {
   
   

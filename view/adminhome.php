@@ -21,6 +21,8 @@ if(empty($_SESSION["username"]))
 
 
 
+
+
 <h1 style="text-align:center;">Admin Home page</h1>
   
 
@@ -43,7 +45,15 @@ if(empty($_SESSION["username"]))
    <li style="margin-top:30px;"><a href="addadmin.php"  style="color:white;background-color:#2196f3; padding:10px 90px 10px 10px; margin-top:50px; text-decoration: none; text-align:left;">Add Admin</a></li>
 
   
- </ul>
+
+   <footer>
+   </ul>
+ <p>kasD</p>
+ <p>kasD</p>
+ <p>kasD</p>
+ <var><p>kasD</p></var>
+   </footer>
+ 
 
 
   

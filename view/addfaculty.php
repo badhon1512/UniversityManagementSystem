@@ -112,12 +112,14 @@ $valid=true;
 
    if($valid)
    {
+
+
      
     
 
-    $sql="INSERT INTO  faculty
+   /* $sql="INSERT INTO  faculty
   VALUES ('$username','$name', '$email','$gender','$password','$date',
-  '$depertment','$salary','active')";
+  '$depertment','$salary','active')";*/
 
 
 $sql2="INSERT INTO  user VALUES('$username','$name','faculty','$password','active')";
@@ -125,8 +127,9 @@ $sql2="INSERT INTO  user VALUES('$username','$name','faculty','$password','activ
      
      $connect=new db();
      $conobj=$connect->OpenCon();
+     $connect->InsertQueryPrepare($conobj,$username,$name, $email,$gender,$password,$date,
+     $depertment,$salary,'active');
      $connect->InsertQuery($conobj,$sql2);
-     $connect->InsertQuery($conobj,$sql);
      $connect->CloseCon($conobj);
 
 

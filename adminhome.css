@@ -1,0 +1,61 @@
+div
+{
+   margin: 0;
+   padding: 0;
+   font-size: 15px;
+   
+
+}
+
+ div.sticky{
+  
+
+  position: sticky;
+ 
+
+
+}
+
+ div ul{
+  list-style-type:none; 
+   overflow: auto;
+    margin:0; 
+    padding: 0;
+     border: 1px solid #2196f3;
+     position: relative;
+}
+
+ div li{
+
+  float:right;
+  margin-left: 40px;
+  list-style-type: none;
+  margin-top: 10px;
+  
+}
+ div a{
+
+  text-decoration: none;
+}
+
+
+
+ div a:hover {
+  color:#2196f3;
+
+
+}
+.logo 
+{
+  
+  margin-right: 1150px;
+  
+  margin-top:0px;
+  position: absolute;
+  
+
+}
+footer
+{
+  position: fixed;
+}
