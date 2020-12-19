@@ -9,8 +9,7 @@
   
 <?php
 session_start();
- include "header.php";?>
-
+ ?>
 
 
 <h1 style="text-align: center;">Add New Admin</h1>

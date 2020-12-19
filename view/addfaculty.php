@@ -9,7 +9,6 @@
   
 <?php
 
- include "header.php";
  $name= $email = $gender = $username = $password =$cpassword=$date= "";
 $notname=$notlname=$notemail=$notGender=$notusername=$notpass=$notcpass=$notdate=$passmatch=$existusername="";
 

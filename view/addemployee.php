@@ -9,7 +9,7 @@
   
 <?php
 
- include "header.php";
+ 
  $salary=$name= $email = $gender = $username = $password =$cpassword=$date= "";
 $notname=$notlname=$notemail=$notGender=$notusername=$notpass=$notcpass=$notdate=$passmatch=$existusername="";
 

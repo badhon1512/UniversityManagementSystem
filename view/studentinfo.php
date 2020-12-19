@@ -7,31 +7,31 @@
 </head>
 <body>
 
-<h1 >yo</h1>
 
 
-<?php include "header.php" ;  ?>
-<script src="../Js/showstudent.js"></script>
+
+
 
 
 <h1 style="text-align:center;">Student Information</h1>
-<input type="text"  onkeyup="showUser(this.value)">
-<button onclick="showUser('staff-1')">Search</button>
+
+<h1 id=#confirmation></h1>
 
 
-<table  id="txtHint" style="align:center;border:1px; width:100%; border: 1px solid black;border-collapse:collapse;">
+
+
+<table style="align:center;border:1px; width:100%; border: 1px solid black;border-collapse:collapse;">
 
 <tr>
  
 <th style=" border: 1px solid black;">Name</th>
 <th style=" border: 1px solid black;">UserId</th>
 <th style=" border: 1px solid black;">Depertment</th>
+<th style=" border: 1px solid black;">Email</th>
 <th style=" border: 1px solid black;">active</th>
 <th style=" border: 1px solid black;">dateofbirth</th>
-
-<th style=" border: 1px solid black;">gender</th>
 <th style=" border: 1px solid black;">cgpa</th>
-
+<th style=" border: 1px solid black;">gender</th>
 
 </tr>
 
@@ -42,18 +42,7 @@
   $connect=new db();
   $conobj=$connect->OpenCon();
   $sql="SELECT * FROM student";
-  $q="";
-  if(isset($_GET['q']))
-  {
-    $q = intval($_GET['q']);
-    if($q!="")
-    {
-      $sql="SELECT * FROM student WHERE id = '".$q."'";
-    }
-  }
-  
   $result=$connect->SelectQuery($conobj,$sql);
-  
 
   if ($result->num_rows> 0) {
     
@@ -64,13 +53,11 @@
       echo "<td style='text-align:center;  border: 1px solid black;'>$row[username]</td>";
       echo "<td style='text-align:center;  border: 1px solid black;'>$row[userid]</td>";
       echo "<td style='text-align:center;  border: 1px solid black;'>$row[depertment]</td>";
+      echo "<td style='text-align:center;  border: 1px solid black;'>$row[email]</td>";
       echo "<td style='text-align:center;  border: 1px solid black;'>$row[activestatus]</td>";
       echo "<td style='text-align:center;  border: 1px solid black;'>$row[dateofbirth]</td>";
-   
-      echo "<td style='text-align:center;  border: 1px solid black;'>$row[gender]</td>";
-
       echo "<td style='text-align:center;  border: 1px solid black;'>$row[cgpa]</td>";
-
+      echo "<td style='text-align:center;  border: 1px solid black;'>$row[gender]</td>";
       echo "<br>";
 
 
@@ -79,12 +66,17 @@
 
   echo "</tr>";
 
+
       
 
     }
+    
   } else {
     echo "0 results";
   }
+
+  $connect->CloseCon($conobj);
+  
 
 
 
@@ -95,7 +87,145 @@
 
 
 
+
 </table>
+<br>
+<br>
+
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+  <label for="">Enter id for delete any specific faculty :</label>
+  <input type="text" name="uid">
+  <input type="submit" id="delete" name="delete">
+
+
+</form>
+<br>
+<br>
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+  <label for="">Enter id for Update any specific faculty :</label>
+  <input type="text" name="idforupdate" id="idforupdate">
+  <input type="submit" id="update" name="update">
+
+
+</form>
+<br>
+<br>
+
+<?php 
+$id="";
+
+
+function  update()
+{
+  
+
+  $connect=new db();
+  $conobj=$connect->OpenCon();
+  $id=$_POST['idforupdate'];
+  echo "$id";
+  $sql="SELECT * FROM student where userid ='$id'";
+  //echo "$sql";
+  $result=$connect->SelectQuery($conobj,$sql);
+
+  if ($result->num_rows> 0) {
+    
+    while($row = $result->fetch_assoc()) {
+
+      $malecheck="";
+      $femalecheck="";
+      if($row['gender']=="male")
+      {
+        $malecheck="checked";
+      }
+      else if($row['gender']=="female")
+      {
+        $femalecheck="checked";
+      }
+      
+     
+      //echo "id: " . $row["userid"]. " - Name: " . $row["username"]. " ". "<br>";
+      $server=htmlspecialchars($_SERVER["PHP_SELF"]);
+      echo "<form method='post' action='$server' onsubmit='showAlert()'>
+      ";
+      echo "<lable>Id   : </lable>";
+      echo "<input type='text' name='uid' value='$row[userid]' > <br><br>";
+      echo "<lable>Name  : </lable>";
+
+      echo "<input type='text' name='uname' value=$row[username]> <br><br>";
+      echo "<lable>cgpa  :   : </lable>";
+      echo "<input type='text' name='ucgpa' value=$row[cgpa]> <br><br>";
+      echo "<lable>Gender   : </lable>";
+      
+      echo "<input type='radio' value='male' name='gender' id='male' $malecheck> male";
+      echo "<input type='radio' value='female' name='gender' id='female' $femalecheck> female <br>";
+      
+      echo "<lable>Email   : </lable>";
+      echo "<input type='text'  name='email' value=$row[email]> <br><br>";
+
+
+      echo "<input type='submit' id='updateconfirm' name='updateconfirm' value='update'>";
+
+      echo "</form>";
+    
+
+
+     
+  $connect->CloseCon($conobj);
+      
+
+    }
+  } 
+}
+
+if($_SERVER["REQUEST_METHOD"]=="POST")
+{
+
+
+     if(!empty($_POST["delete"]))
+     {
+     
+      
+       $sql="delete from student WHERE
+       userid='$_POST[uid]'";
+       $connect=new db();
+       $conobj=$connect->OpenCon();
+       
+       //echo "$sql";
+       $result=$connect->UpdateQuery($conobj,$sql);
+
+     }
+
+     //fetch
+     else if(!empty($_POST["update"]))
+     {
+       echo "update";
+       update();
+       
+     }
+     ///update 
+     else if(!empty($_POST["updateconfirm"]))
+     {
+       $username=$_POST["uname"];
+      
+       $sql="UPDATE student SET username='$username',cgpa='$_POST[ucgpa]',gender='$_POST[gender]', email='$_POST[email]' WHERE
+       userid='$_POST[uid]'";
+       $connect=new db();
+       $conobj=$connect->OpenCon();
+       
+       //echo "$sql";
+       $result=$connect->UpdateQuery($conobj,$sql);
+
+     }
+    
+  
+}
+?>
+
+
+
+<script src="../Js/updateScript.js"></script>
 
       
   

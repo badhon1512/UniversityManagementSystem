@@ -15,7 +15,7 @@
 
 
 include "../dbControler/db.php";
-  include "header.php";
+  
   //include "DbControler/db.php";
 
   $name = "";

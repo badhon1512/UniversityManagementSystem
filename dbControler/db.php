@@ -38,7 +38,6 @@ $result = $conn->query("SELECT * FROM ". $table." WHERE userid='". $username."' 
 
   
   if ($stmt->execute() === TRUE) {
-    echo "New record created successfully";
     return true;
   } else {
     echo "Error:   <br>" . $conn->error;
@@ -52,7 +51,7 @@ $result = $conn->query("SELECT * FROM ". $table." WHERE userid='". $username."' 
   
   
   if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    
     return true;
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -66,7 +65,7 @@ function UpdateQuery($conn,$sql)
   
   
   if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+   
     return true;
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
