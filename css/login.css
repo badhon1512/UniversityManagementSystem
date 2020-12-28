@@ -1,0 +1,28 @@
+body
+{
+  background-image:url('../image/aiubHome.jpg');
+  background-position: center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   color: aqua;
+}
+input
+{
+  
+  margin-left: 500px;
+  height:35px;
+  width:350px;
+   font-size:20px;
+   margin-top: 10px;
+}
+#id
+{
+  margin-top:300px;
+}
+#button
+{
+  margin-top: 10px;
+  background-color:#497FAF;
+  height: 50px;
+}
+

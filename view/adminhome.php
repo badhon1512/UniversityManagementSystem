@@ -24,7 +24,7 @@ if(empty($_SESSION["username"]))
 
 
 
-<h1 style="text-align:center;">Admin Home page</h1>
+<h1 >Admin Home page</h1>
 
 <div class='row'>
   
@@ -33,30 +33,30 @@ if(empty($_SESSION["username"]))
  <ul > 
    
 
- <li><a href="postnotice.php" target="iframe_a">Post Notice</a></li>
+ <li><a href="postnotice.php" target="iframe">Post Notice</a></li>
  <br>
 
- <li ><a href="studentinfo.php" target="iframe_a" >Student Info</a></li>
+ <li ><a href="studentinfo.php" target="iframe" >Student Info</a></li>
  <br>
 
-   <li ><a href="facultyinfo.php" target="iframe_a" >Faculty Info</a></li>
+   <li ><a href="facultyinfo.php" target="iframe" >Faculty Info</a></li>
    <br>
 
-   <li ><a href="staffinfo.php"  target="iframe_a">Employee Info</a></li>
-   <li ><a href="showadmininfo.php" target="iframe_a">Admin Info</a></li>
-   <li ><a href="addfaculty.php"  target="iframe_a">Add Faculty</a></li>
-   <li ><a href="addstudent.php" target="iframe_a" >Add Student</a></li>
+   <li ><a href="staffinfo.php"  target="iframe">Employee Info</a></li>
+   <li ><a href="admininfo.php" target="iframe">Admin Info</a></li>
+   <li ><a href="addfaculty.php"  target="iframe">Add Faculty</a></li>
+   <li ><a href="addstudent.php" target="iframe" >Add Student</a></li>
 
-   <li ><a href="addemployee.php" target="iframe_a">Add Employee</a></li>
+   <li ><a href="addemployee.php" target="iframe">Add Employee</a></li>
 
-   <li ><a href="addadmin.php" target="iframe_a">Add Admin</a></li>
+   <li ><a href="addadmin.php" target="iframe">Add Admin</a></li>
 </ul>
 
   
 </div>
 
 <div class="col-2">
-<iframe src="" name="iframe_a" height="1000px" width="100%" title="Iframe Example"></iframe>
+<iframe src="../image/home.jpg" name="iframe" height="1000px" width="100%" title="Iframe Example"></iframe>
 
 
 </div>

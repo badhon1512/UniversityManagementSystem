@@ -14,22 +14,29 @@
   <?php
 
 
+include "header.php";
+
 include "../dbControler/db.php";
   
   //include "DbControler/db.php";
 
+
   $name = "";
   $connection = new db();
   $conobj=$connection->OpenCon();
-   $sql="SELECT * from faculty where userid='$_SESSION[userid]'";
+  //echo $_SESSION["userid"];
+   $sql="SELECT * from admin where userid='$_SESSION[userid]'";
   $userQuery=$connection->SelectQuery($conobj,$sql);
   $row=$userQuery->fetch_assoc();
+  $pic=$row['picture'];
+  echo $pic;
 
   ?>
 
 
     
-
+<img src="../" alt="">
+<br>
   <label style="margin-left:100px;  font-size:20px" for=""> name </label>
 
   <label style="margin-left:150px;  font-size:20px" for=""> :</label>
@@ -52,11 +59,11 @@ include "../dbControler/db.php";
 
   <label style="margin-left:100px;  font-size:20px" for="">User Id </label>
   <label style="margin-left:130px; color:maroon; font-size:20px" for=""> :</label>
-  <?php echo $row["userid"];; ?>
+  <?php echo $row["userid"]; ?>
   <hr>
   <label style="margin-left:100px;  font-size:20px" for="">Gender </label>
   <label style="margin-left:130px; color:maroon; font-size:20px" for=""> :</label>
-  <?php $row["gender"]; ?>
+  <?php echo  $row["gender"]; ?>
 
 
   <hr>

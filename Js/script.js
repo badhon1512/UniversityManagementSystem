@@ -1,9 +1,9 @@
 
-function showUser(str) {
-  console.log(str);
-  console.log('x');
+function searchUser(table) {
+  var str=document.getElementById("userid").value;
+ console.log(str);
   if (str == "") {
-    document.getElementById("txtHint").innerHTML = "";
+    document.getElementById("searchinfo").innerHTML = "";
     
     return;
   } else {
@@ -16,7 +16,7 @@ function showUser(str) {
 
     
     
-    xmlhttp.open("GET","/Project/Json/Search.php?id="+str,true);
+    xmlhttp.open("GET","/Project/Json/Search.php?id="+str+"&tablename="+table,true);
     xmlhttp.send();
   }
 }

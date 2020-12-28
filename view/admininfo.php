@@ -8,25 +8,24 @@
 </head>
 <body>
 
-
-
-
-
-
-
-<h1 >Staff Information</h1>
-
-<h1 id=#confirmation></h1>
+<h1 >Admin Information</h1>
+<br>
 <label for="">Search :</label>
 <br>
 <br>
 
 <input type="text" id="userid">
-<button onclick="searchUser('staff')">search</button>
+<button onclick="searchUser('admin')">search</button>
 
 
 <table id="searchinfo"></table>
 
+
+
+
+
+
+<h1 id=#confirmation></h1>
 
 
 
@@ -38,11 +37,11 @@
 <th >Name</th>
 <th >UserId</th>
 
-<th>Email</th>
+<th >Email</th>
 <th >active</th>
 <th >dateofbirth</th>
-<th>salary</th>
-<th>gender</th>
+<th >salary</th>
+<th >gender</th>
 
 </tr>
 
@@ -52,7 +51,7 @@
   include "../dbControler/db.php";
   $connect=new db();
   $conobj=$connect->OpenCon();
-  $sql="SELECT * FROM staff";
+  $sql="SELECT * FROM admin";
   $result=$connect->SelectQuery($conobj,$sql);
 
   if ($result->num_rows> 0) {
@@ -63,12 +62,12 @@
 
       echo "<td >$row[username]</td>";
       echo "<td >$row[userid]</td>";
-     
-      echo "<td>$row[email]</td>";
-      echo "<td >$row[activestatus]</td>";
+      
+      echo "<td >$row[email]</td>";
+      echo "<td>$row[activestatus]</td>";
       echo "<td >$row[dateofbirth]</td>";
       echo "<td >$row[salary]</td>";
-      echo "<td>$row[gender]</td>";
+      echo "<td >$row[gender]</td>";
       echo "<br>";
 
 
@@ -136,7 +135,7 @@ function  update()
   $conobj=$connect->OpenCon();
   $id=$_POST['idforupdate'];
   echo "$id";
-  $sql="SELECT * FROM staff where userid ='$id'";
+  $sql="SELECT * FROM admin where userid ='$id'";
   //echo "$sql";
   $result=$connect->SelectQuery($conobj,$sql);
 
@@ -198,7 +197,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
      {
      
       
-       $sql="delete from staff WHERE
+       $sql="delete from admin WHERE
        userid='$_POST[uid]'";
        $connect=new db();
        $conobj=$connect->OpenCon();
@@ -220,7 +219,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
      {
        $username=$_POST["uname"];
       
-       $sql="UPDATE staff SET username='$username',salary='$_POST[usalary]',gender='$_POST[gender]', email='$_POST[email]' WHERE
+       $sql="UPDATE admin SET username='$username',salary='$_POST[usalary]',gender='$_POST[gender]', email='$_POST[email]' WHERE
        userid='$_POST[uid]'";
        $connect=new db();
        $conobj=$connect->OpenCon();

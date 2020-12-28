@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -13,25 +14,33 @@
 
 
 
-<h1 style="text-align:center;">Student Information</h1>
+<h1 >Student Information</h1>
 
 <h1 id=#confirmation></h1>
 
+<br>
+<label for="">Search :</label>
+<br>
+<br>
+
+<input type="text" id="userid">
+<button onclick="searchUser('student')">search</button>
 
 
+<table id="searchinfo"></table>
 
-<table style="align:center;border:1px; width:100%; border: 1px solid black;border-collapse:collapse;">
+<table >
 
 <tr>
  
-<th style=" border: 1px solid black;">Name</th>
-<th style=" border: 1px solid black;">UserId</th>
-<th style=" border: 1px solid black;">Depertment</th>
-<th style=" border: 1px solid black;">Email</th>
-<th style=" border: 1px solid black;">active</th>
-<th style=" border: 1px solid black;">dateofbirth</th>
-<th style=" border: 1px solid black;">cgpa</th>
-<th style=" border: 1px solid black;">gender</th>
+<th >Name</th>
+<th >UserId</th>
+<th >Depertment</th>
+<th >Email</th>
+<th >active</th>
+<th >dateofbirth</th>
+<th >cgpa</th>
+<th >gender</th>
 
 </tr>
 
@@ -50,14 +59,14 @@
       echo "<tr>";
       //echo "id: " . $row["userid"]. " - Name: " . $row["username"]. " ". "<br>";
 
-      echo "<td style='text-align:center;  border: 1px solid black;'>$row[username]</td>";
-      echo "<td style='text-align:center;  border: 1px solid black;'>$row[userid]</td>";
-      echo "<td style='text-align:center;  border: 1px solid black;'>$row[depertment]</td>";
-      echo "<td style='text-align:center;  border: 1px solid black;'>$row[email]</td>";
-      echo "<td style='text-align:center;  border: 1px solid black;'>$row[activestatus]</td>";
-      echo "<td style='text-align:center;  border: 1px solid black;'>$row[dateofbirth]</td>";
-      echo "<td style='text-align:center;  border: 1px solid black;'>$row[cgpa]</td>";
-      echo "<td style='text-align:center;  border: 1px solid black;'>$row[gender]</td>";
+      echo "<td >$row[username]</td>";
+      echo "<td >$row[userid]</td>";
+      echo "<td >$row[depertment]</td>";
+      echo "<td >$row[email]</td>";
+      echo "<td >$row[activestatus]</td>";
+      echo "<td >$row[dateofbirth]</td>";
+      echo "<td >$row[cgpa]</td>";
+      echo "<td >$row[gender]</td>";
       echo "<br>";
 
 
@@ -124,7 +133,7 @@ function  update()
   $connect=new db();
   $conobj=$connect->OpenCon();
   $id=$_POST['idforupdate'];
-  echo "$id";
+  //echo "$id";
   $sql="SELECT * FROM student where userid ='$id'";
   //echo "$sql";
   $result=$connect->SelectQuery($conobj,$sql);
@@ -144,7 +153,7 @@ function  update()
         $femalecheck="checked";
       }
       
-     
+    // echo $row['username'];
       //echo "id: " . $row["userid"]. " - Name: " . $row["username"]. " ". "<br>";
       $server=htmlspecialchars($_SERVER["PHP_SELF"]);
       echo "<form method='post' action='$server' onsubmit='showAlert()'>
@@ -153,7 +162,7 @@ function  update()
       echo "<input type='text' name='uid' value='$row[userid]' > <br><br>";
       echo "<lable>Name  : </lable>";
 
-      echo "<input type='text' name='uname' value=$row[username]> <br><br>";
+      echo "<input type='text' name='uname' value='$row[username]'> <br><br>";
       echo "<lable>cgpa  :   : </lable>";
       echo "<input type='text' name='ucgpa' value=$row[cgpa]> <br><br>";
       echo "<lable>Gender   : </lable>";
@@ -225,7 +234,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
 
 
-<script src="../Js/updateScript.js"></script>
+<script src="../Js/script.js"></script>
 
       
   

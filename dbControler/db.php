@@ -51,7 +51,7 @@ $result = $conn->query("SELECT * FROM ". $table." WHERE userid='". $username."' 
   
   
   if ($conn->query($sql) === TRUE) {
-    
+    echo "added successfully";
     return true;
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;

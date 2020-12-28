@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-<body  style="background-image:url('image/home1.jpg');background-position: center; background-repeat: no-repeat;background-attachment: fixed;  ">
+<body  style="background-image:url('../image/home1.jpg');background-position: center; background-repeat: no-repeat;background-attachment: fixed;  ">
   
   <ul style="list-style-type:none; background-color:#2196f3; overflow:hidden; margin:0; padding: 0;">
 
