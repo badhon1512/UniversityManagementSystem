@@ -14,7 +14,7 @@
   <?php
 
 
-include "header.php";
+session_start();
 
 include "../dbControler/db.php";
   

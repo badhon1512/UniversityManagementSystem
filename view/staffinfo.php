@@ -17,12 +17,12 @@
 <h1 >Staff Information</h1>
 
 <h1 id=#confirmation></h1>
-<label for="">Search :</label>
-<br>
+
 <br>
 
 <input type="text" id="userid">
 <button onclick="searchUser('staff')">search</button>
+<button><a href="staffinfo">Refresh</a></button>
 
 
 <table id="searchinfo"></table>
@@ -31,7 +31,7 @@
 
 
 
-<table >
+<table id="table">
 
 <tr>
  

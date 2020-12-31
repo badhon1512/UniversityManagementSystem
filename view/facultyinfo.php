@@ -9,13 +9,12 @@
 <body>
 
 <h1 >Fcaulty Information</h1>
-<br>
-<label for="">Search :</label>
-<br>
+
 <br>
 
 <input type="text" id="userid">
 <button onclick="searchUser('faculty')">search</button>
+<button><a href="facultyinfo">Refresh</a></button>
 
 
 <table id="searchinfo"></table>
@@ -30,7 +29,7 @@
 
 
 
-<table >
+<table id="table" >
 
 <tr>
  

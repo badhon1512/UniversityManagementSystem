@@ -4,6 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script>
+function check()
+{
+  console.log("call");
+  var flag=true;
+var name=id=password=salary=dob=cpassword=address=email=telephone=superpower="";
+
+  name=document.getElementById("name").value;
+  
+  email=document.getElementById("email").value;
+  
+  password=document.getElementById("pass").value;
+  cpassword=document.getElementById("cpass").value;
+  salary=document.getElementById("salary").value;
+  dob=document.getElementById("dob").value;
+  
+  
+  var letters = /^[A-Za-z' ']+$/;
+  var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  var numbers = /^[0-9]+$/;
+  if(!name.match(letters))
+  {
+    
+    flag=false;
+  
+    document.getElementById("nameerror").innerHTML="Please Enter valid name";
+  }
+
+  if(!email.match(mailformat))
+  {
+    
+    flag=false;
+    document.getElementById("emailerror").innerHTML="Please enter valid email";
+  }
+  if(password.length<6)
+  {
+    flag=false;
+    document.getElementById("passerror").innerHTML="Password lenght must be at least 6 charecter";
+  }
+  if(password!=cpassword)
+  {
+    flag=false;
+    document.getElementById("cpasserror").innerHTML="password doesn't match";
+  }
+  if(salary=="")
+  {
+    flag=false;
+    document.getElementById("salaryerror").innerHTML="password enter salary";
+  }
+  if(dob=="")
+  {
+    flag=false;
+    document.getElementById("doberror").innerHTML="password enter date of birth";
+  }
+ 
+
+  if(flag===false)
+  {
+  
+    
+    return false;
+  }
+  else
+  {
+    return true;
+  }
+  
+ 
+}
+
+
+</script>
+
 </head>
 <body>
   
@@ -14,79 +87,85 @@ $notname=$notlname=$notemail=$notGender=$notusername=$notpass=$notcpass=$notdate
 $valid=true;
 
 
-
+$existusername="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-  $name = test_input($_POST["name"]);
-  $email = test_input($_POST["email"]);
-  $gender = test_input($_POST["gender"]);
-  $username=test_input(($_POST["username"]));
-  $password=test_input(($_POST["pass"]));
-  $cpassword=test_input(($_POST["cpass"]));
-  $date=test_input(($_POST["dob"]));
-  
+  $username=$_POST["username"];
+  $name=$_POST["name"];
+  $email=$_POST["email"];
+  $gender=$_POST["gender"];
+  $password=$_POST["pass"];
+  $date=$_POST["dob"];
+  $salary=$_POST["salary"];
 
   
+  include "../dbControler/db.php";
+
+   if($valid){
+
+    $sql3="SELECT * FROM user where userid='$username'";
+  
+  
+       
+       $connect=new db();
+       $conobj=$connect->OpenCon();
+       $c=$connect->SelectQuery($conobj,$sql3);
+       $connect->CloseCon($conobj);
+       if($c->num_rows>0)
+       {
+        $existusername="This user name is already exist";
+        $valid=false;
+       }
+
+       if($valid)
+   {
+
+
+     
+    
+
+  
+
+    $sql="INSERT INTO  admin
+    VALUES ('$username','$name', '$email','$gender','$password','$date','$salary','active','pic')";
+  
+  
+  $sql2="INSERT INTO  user VALUES('$username','$name','staff','$password','active')";
+  
+       
+       $connect=new db();
+       $conobj=$connect->OpenCon();
+       $connect->InsertQuery($conobj,$sql2);
+       $connect->InsertQuery($conobj,$sql);
+       $connect->CloseCon($conobj);
+  
+
+   }
+   else 
+   {
+     echo "Invalid Information";
+   }
+
+
+  
   
 
 
-
-
-  if(empty($name) || !preg_match("/^[a-zA-Z-' ]*$/",$name))
-  {
-    $notname="please enter your name";
-    $valid=false;
-  }
-  
-  if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
-  {
-    $notemail="please enter your email";
-    $valid=false;
-  }
-  if(empty($username)|| !preg_match("/^[(0-9)+a-zA-Z-' ]*$/",$username))
-  {
-    $notusername="please enter user name";
-    $valid=false;
-  }
-
-  if(empty($password))
-  {
-    $notpass="please enter password";
-    $valid=false;
-  }
-  if(empty($cpassword))
-  {
-    $notcpass="please  enter confirm password";
-    $valid=false;
-  }
-
-  if(empty($date))
-  {
-    $notdate="please enter dtae of birth";
-    $valid=false;
-  }
-
-  
 
 
   
   
 }
-
-function test_input($data) {
-  
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
 }
+
+
  ?>
 
 
 <h1 >Add New Admin</h1>
 
 
-  <form enctype="multipart/formdata" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+<form name="myForm" action="" onsubmit="return check()"
+method="post">
   <fieldset>
   <legend ><b> Registration Form</b></legend>
 
@@ -95,7 +174,8 @@ function test_input($data) {
   <label  for=""> Name  </label>
 
 <label  for=""> :</label>
-<input type="text" name="name" id="name" placeholder="name" > <?php echo $notname;  ?>
+<input type="text" name="name" id="name" placeholder="name" > 
+<p id="nameerror"></p>
 
 <!--<hr style="margin-left:400px; margin-:400px;">-->
 <hr>
@@ -106,14 +186,17 @@ function test_input($data) {
 
 <label  for=""> :</label>
 <input  type="text" name="email" id="email"
-  placeholder="badhon1512@gmail.com"> <?php echo $notemail;  ?>
+  placeholder="badhon1512@gmail.com"> <p id="emailerror"></p>
 
 <hr>
 
 
 <label  for="">User Id </label>
 <label  for=""> :</label>
-<input  type="text" name="username" id="cemail" placeholder="badhon1512" > <?php echo $notusername;  ?>
+<input  type="text" name="username" id="uid" placeholder="badhon1512" > 
+<?php 
+echo $existusername;
+?>
 
 <hr>
 
@@ -124,13 +207,14 @@ function test_input($data) {
 <label  for=""> :</label>
 
 <input  type="password" name="pass" id="pass" placeholder="*****" > <?php echo $notpass;  ?>
+<p id="passerror"></p>
 
 <hr>
 
 
 <label for="">Confirm Password  </label>
 <label  for=""> :</label>
-<input  type="password" name="cpass" id="cpass" placeholder="*******" > <?php echo $notcpass;  ?>
+<input  type="password" name="cpass" id="cpass" placeholder="*******" > <p id="cpasserror"></p>
 <br>
 <hr>
 
@@ -158,7 +242,7 @@ function test_input($data) {
 <fieldset >
 <legend >Date of Birth</legend>
 
-<input  type="date" name="dob" id="date" > <?php echo $notdate;  ?>
+<input  type="date" name="dob" id="dob" > <p id="doberror"></p>
 
 </fieldset>
 
@@ -180,7 +264,7 @@ function test_input($data) {
 
     <label  for=""> :</label>
     
-    <input  type="number" name="pass" id="pass" placeholder="2000" > <?php echo $notpass;  ?>
+    <input  type="number" name="salary" id="salary" placeholder="2000" > <p id="salaryerror"></p>
     <br>
     <br>
    
@@ -228,7 +312,7 @@ function test_input($data) {
 
 
 
-
+<script src="../Js/script.js"></script>
 
 
 </body>

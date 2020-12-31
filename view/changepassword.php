@@ -10,7 +10,40 @@
 
 <?php
 
-   include "session/loginsession.php";
+   include "../session/loginsession.php";
+   $password=$error="";
+   $valid=true;
+
+   if(!empty($_POST["changepassword"]))
+   {
+     $password=$_POST["newpass"];
+   
+     if($_POST["newpass"]=="")
+     {
+       $valid=false;
+      $error="please enter a password";
+     }
+     
+    if($_POST["newpass"]!=$_POST["cnewpass"])
+    {
+      $valid=false;
+        $error="password doesn't match";
+
+    }
+
+    if($valid)
+    {
+      $sql="update user set userpassword='$password' where userid='$_SESSION[userid]'";
+      $connect=new db();
+       $conobj=$connect->OpenCon();
+       
+       //echo "$sql";
+       $result=$connect->UpdateQuery($conobj,$sql);
+
+       echo "password change successfull";
+    }
+    
+   }
    
    
 
@@ -19,29 +52,25 @@
 
 <h1 style="text-align: center;">Password change</h1>
 
-<form action=""   style="margin-top:100px;">
-<label style="margin-left:400px;" for="">Current password</label>
-<label style="margin-left:20px;" for="">:</label>
-<input type="password" name="pass" style="width:300px">
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+<label  for="">New password</label>
+<label  for="">:</label>
+<input type="password" name="newpass" >
 <br>
 <br>
 
-<label style="margin-left:400px;" for="">New password</label>
-<label style="margin-left:45px;" for="">:</label>
-<input type="password" name="newpass" style="width:300px">
+<label  for="">Confirm password</label>
+<label  for="">:</label>
+<input type="password" name="cnewpass" >
 <br>
 <br>
-
-<label style="margin-left:400px;" for="">Confirm password</label>
-<label style="margin-left:20px;" for="">:</label>
-<input type="password" name="cnewpass" style="width:300px">
-<br>
+<?php echo $error;
+?>
 <br>
 
-
-
-<input type="submit" name="submit" value="change password" style="margin-left:450px;margin-top:20px; width:150px;">
-<input type="reset" name="reset" value="reset" style="margin-left:10px;margin-top:20px; width:150px;">
+<input type="submit" name="changepassword" value="change password" >
+<input type="reset" name="reset" value="reset" >
 
 </form>
 

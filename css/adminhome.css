@@ -53,3 +53,7 @@ footer
 {
   position: fixed;
 }
+#homenavbar ul
+{
+  background-color: #2196f3;
+}

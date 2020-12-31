@@ -136,7 +136,7 @@ $sql2="INSERT INTO  user VALUES('$username','$name','faculty','$password','activ
    }
    else 
    {
-     echo "not valid";
+     echo "Invalid Information";
    }
    
  

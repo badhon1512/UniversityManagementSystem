@@ -11,7 +11,7 @@
 <th >Name</th>
 <th >UserId</th>
 
-<th >email</th>
+<th >active</th>
 <th >dateofbirth</th>
 
 <th >gender</th>
@@ -52,7 +52,7 @@ while($row = $result->fetch_assoc()) {
       echo "<td >$row[username]</td>";
       echo "<td >$row[userid]</td>";
     
-      echo "<td >$row[email]</td>";
+      echo "<td >$row[activestatus]</td>";
       echo "<td >$row[dateofbirth]</td>";
    
       echo "<td >$row[gender]</td>";

@@ -18,18 +18,17 @@
 
 <h1 id=#confirmation></h1>
 
-<br>
-<label for="">Search :</label>
-<br>
+
 <br>
 
 <input type="text" id="userid">
 <button onclick="searchUser('student')">search</button>
+<button><a href="studentinfo">Refresh</a></button>
 
 
 <table id="searchinfo"></table>
 
-<table >
+<table id="table">
 
 <tr>
  
